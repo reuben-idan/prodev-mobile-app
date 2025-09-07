@@ -1,7 +1,6 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Property } from '@/interfaces';
-import { HeartIcon } from 'react-native-heroicons/outline';
-import { HeartIcon as HeartIconSolid } from 'react-native-heroicons/solid';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 interface PropertyListingCardProps {
   property: Property;
@@ -10,42 +9,112 @@ interface PropertyListingCardProps {
 
 export function PropertyListingCard({ property, onSave }: PropertyListingCardProps) {
   return (
-    <View className="bg-white rounded-xl shadow-sm overflow-hidden mb-4">
-      <View className="relative">
+    <View style={styles.card}>
+      <View style={styles.imageContainer}>
         <Image 
           source={{ uri: property.images[0] }} 
-          className="w-full h-48" 
+          style={styles.image}
           resizeMode="cover"
         />
         <TouchableOpacity 
-          className="absolute top-2 right-2 p-2 bg-white rounded-full"
+          style={styles.saveButton}
           onPress={() => onSave?.(property.id)}
         >
-          {property.isSaved ? (
-            <HeartIconSolid size={24} color="#EF4444" />
-          ) : (
-            <HeartIcon size={24} color="#6B7280" />
-          )}
+          <MaterialCommunityIcons 
+            name={property.isSaved ? 'heart' : 'heart-outline'} 
+            size={24} 
+            color={property.isSaved ? '#EF4444' : '#6B7280'} 
+          />
         </TouchableOpacity>
-        <View className="absolute bottom-2 left-2 bg-blue-600 px-2 py-1 rounded">
-          <Text className="text-white text-sm font-medium">${property.price.toLocaleString()}</Text>
+        <View style={styles.priceContainer}>
+          <Text style={styles.priceText}>${property.price.toLocaleString()}</Text>
         </View>
       </View>
       
-      <View className="p-4">
-        <Text className="text-lg font-bold mb-1">{property.title}</Text>
-        <Text className="text-gray-500 text-sm mb-2">{property.address}</Text>
+      <View style={styles.detailsContainer}>
+        <Text style={styles.title}>{property.title}</Text>
+        <Text style={styles.address}>{property.address}</Text>
         
-        <View className="flex-row justify-between mt-2">
-          <View className="flex-row items-center">
-            <Text className="text-gray-700">{property.bedrooms} bd</Text>
-            <Text className="mx-2 text-gray-300">•</Text>
-            <Text className="text-gray-700">{property.bathrooms} ba</Text>
-            <Text className="mx-2 text-gray-300">•</Text>
-            <Text className="text-gray-700">{property.area} sqft</Text>
+        <View style={styles.featuresContainer}>
+          <View style={styles.featuresRow}>
+            <Text style={styles.featureText}>{property.bedrooms} bd</Text>
+            <Text style={styles.divider}>•</Text>
+            <Text style={styles.featureText}>{property.bathrooms} ba</Text>
+            <Text style={styles.divider}>•</Text>
+            <Text style={styles.featureText}>{property.area} sqft</Text>
           </View>
         </View>
       </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  imageContainer: {
+    position: 'relative',
+  },
+  image: {
+    width: '100%',
+    height: 192,
+  },
+  saveButton: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    padding: 8,
+    backgroundColor: 'white',
+    borderRadius: 20,
+  },
+  priceContainer: {
+    position: 'absolute',
+    bottom: 8,
+    left: 8,
+    backgroundColor: '#2563eb',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+  },
+  priceText: {
+    color: 'white',
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  detailsContainer: {
+    padding: 16,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  address: {
+    color: '#6b7280',
+    fontSize: 14,
+    marginBottom: 8,
+  },
+  featuresContainer: {
+    marginTop: 8,
+  },
+  featuresRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  featureText: {
+    color: '#374151',
+  },
+  divider: {
+    marginHorizontal: 8,
+    color: '#d1d5db',
+  },
+});

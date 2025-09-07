@@ -4,8 +4,13 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import 'react-native-reanimated';
+import { useColorScheme } from 'react-native';
+import { NativeWindStyleSheet } from 'nativewind';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+// Enable nativewind style resolution
+NativeWindStyleSheet.setOutput({
+  default: 'native',
+});
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -23,6 +28,7 @@ export default function RootLayout() {
       <Stack screenOptions={{
         headerShown: false,
       }}>
+        <Stack.Screen name="(home)" />
         <Stack.Screen name="index" />
         <Stack.Screen name="join" />
         <Stack.Screen name="signin" />
