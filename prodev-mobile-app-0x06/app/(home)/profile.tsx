@@ -1,154 +1,181 @@
-import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
-import { Feather, MaterialIcons } from "@expo/vector-icons";
+import { View, Text, Image, Pressable } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import Feather from "@expo/vector-icons/Feather";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-export default function Profile() {
+const Profile = () => {
   return (
-    <ScrollView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.profileInfo}>
-          <Image source={require("@/assets/images/user-image.png")} />
-          <View>
-            <Text style={styles.name}>Cole Baidoo</Text>
-            <Text style={styles.username}>@cole_cs</Text>
+    <SafeAreaProvider>
+      <SafeAreaView className="flex-1 p-4">
+        <Text className="text-black text-4xl font-normal mb-6">Profile</Text>
+        <View className="bg-[#34967C] h-[90px] mb-10 flex-row items-center rounded-md justify-between px-7">
+          <View className="flex-row items-center gap-4">
+            <Image source={require("@/assets/images/user-image.png")} />
+            <View>
+              <Text className="font-semibold text-xl text-white">
+                Cole Baidoo
+              </Text>
+              <Text className="text-sm font-thin text-white">@block_cs</Text>
+            </View>
           </View>
+          <Feather name="edit-3" size={24} color="white" />
         </View>
-        <TouchableOpacity>
-          <Feather name="edit" size={20} color="white" />
-        </TouchableOpacity>
-      </View>
 
-      {/* Main Options */}
-      <View style={styles.section}>
-        <ProfileItem
-          icon="person-outline"
-          title="My Account"
-          subtitle="Make Changes to your account"
-        />
-        <ProfileItem
-          icon="person-outline"
-          title="Saved Beneficiary"
-          subtitle="Manage your saved accounts"
-        />
-        <ProfileItem
-          icon="lock-outline"
-          title="Face ID / Touch ID"
-          subtitle="Make Changes to your account"
-        />
-        <ProfileItem
-          icon="shield"
-          title="Two-Factor Authentication"
-          subtitle="Further secure your account for safety"
-        />
-        <ProfileItem
-          icon="exit-to-app"
-          title="Log out"
-          subtitle="Further secure your account for safety"
-        />
-      </View>
+        <View className="h-[350px] gap-3 bg-white rounded-md p-4 mb-4">
+          <Pressable className="flex-row items-center justify-between mb-2">
+            <View className="flex-row items-center gap-4">
+              <View className="w-12 h-12 bg-[#0601B4]/10 items-center justify-center rounded-full">
+                <FontAwesome6 name="user" size={24} color="#0601B4" />
+              </View>
+              <View>
+                <Text className="text-lg font-semibold mb-2">My Account</Text>
+                <Text className="font-thin text-gray-700">
+                  Make Changes to your account
+                </Text>
+              </View>
+            </View>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={34}
+              color="black"
+            />
+          </Pressable>
+          <Pressable className="flex-row items-center justify-between mb-2">
+            <View className="flex-row items-center gap-4">
+              <View className="w-12 h-12 bg-[#0601B4]/10 items-center justify-center rounded-full">
+                <FontAwesome6 name="user" size={24} color="#0601B4" />
+              </View>
+              <View>
+                <Text className="text-lg font-normal mb-2">
+                  Saved Beneficiary
+                </Text>
+                <Text className="font-thin text-gray-700">
+                  Manage your saved accounts
+                </Text>
+              </View>
+            </View>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={34}
+              color="black"
+            />
+          </Pressable>
+          <Pressable className="flex-row items-center justify-between mb-2">
+            <View className="flex-row items-center gap-4">
+              <View className="w-12 h-12 bg-[#0601B4]/10 items-center justify-center rounded-full">
+                <Ionicons
+                  name="lock-closed-outline"
+                  size={24}
+                  color="#0601B4"
+                />
+              </View>
+              <View>
+                <Text className="text-lg font-normal mb-2">
+                  Face ID / Touch ID
+                </Text>
+                <Text className="font-thin text-gray-700">
+                  Make Changes to your account
+                </Text>
+              </View>
+            </View>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={34}
+              color="black"
+            />
+          </Pressable>
+          <Pressable className="flex-row items-center justify-between mb-2">
+            <View className="flex-row items-center gap-4">
+              <View className="w-12 h-12 bg-[#0601B4]/10 items-center justify-center rounded-full">
+                <Ionicons
+                  name="shield-checkmark-outline"
+                  size={24}
+                  color="#0601B4"
+                />
+              </View>
+              <View>
+                <Text className="text-lg font-normal mb-2">
+                  Two-Factor Authentication
+                </Text>
+                <Text className="font-thin text-gray-700">
+                  Further secure your account for safety
+                </Text>
+              </View>
+            </View>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={34}
+              color="black"
+            />
+          </Pressable>
+          <Pressable className="flex-row items-center justify-between mb-2">
+            <View className="flex-row items-center gap-4">
+              <View className="w-12 h-12 bg-[#0601B4]/10 items-center justify-center rounded-full">
+                <MaterialIcons name="logout" size={24} color="#0601B4" />
+              </View>
+              <View>
+                <Text className="text-lg font-normal mb-2">Log out</Text>
+                <Text className="font-thin text-gray-700">
+                  Further secure your account for safety
+                </Text>
+              </View>
+            </View>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={34}
+              color="black"
+            />
+          </Pressable>
+        </View>
 
-      {/* More Section */}
-      <Text style={styles.sectionTitle}>More</Text>
-      <View style={styles.section}>
-        <ProfileItem
-          icon="notifications-none"
-          title="Help & Support"
-          subtitle="Make Changes to your account"
-        />
-        <ProfileItem
-          icon="favorite-outline"
-          title="About App"
-          subtitle="Manage your saved accounts"
-        />
-      </View>
-    </ScrollView>
+        <Text className="text-black text-xl font-normal mb-6">More</Text>
+
+        <View className="h-[139px] gap-3 bg-white rounded-md p-4 mb-4">
+          <Pressable className="flex-row items-center justify-between mb-2">
+            <View className="flex-row items-center gap-4">
+              <View className="w-12 h-12 bg-[#0601B4]/10 items-center justify-center rounded-full">
+                <FontAwesome6 name="user" size={24} color="#0601B4" />
+              </View>
+              <View>
+                <Text className="text-lg font-semibold mb-2">My Account</Text>
+                <Text className="font-thin text-gray-700">
+                  Make Changes to your account
+                </Text>
+              </View>
+            </View>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={34}
+              color="black"
+            />
+          </Pressable>
+          <Pressable className="flex-row items-center justify-between mb-2">
+            <View className="flex-row items-center gap-4">
+              <View className="w-12 h-12 bg-[#0601B4]/10 items-center justify-center rounded-full">
+                <FontAwesome6 name="user" size={24} color="#0601B4" />
+              </View>
+              <View>
+                <Text className="text-lg font-normal mb-2">
+                  Saved Beneficiary
+                </Text>
+                <Text className="font-thin text-gray-700">
+                  Manage your saved accounts
+                </Text>
+              </View>
+            </View>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={34}
+              color="black"
+            />
+          </Pressable>
+        </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
-}
+};
 
-// 🔹 Reusable item
-const ProfileItem = ({ icon, title, subtitle }: any) => (
-  <TouchableOpacity style={styles.item}>
-    <MaterialIcons name={icon} size={34} color="#6C63FF" />
-    <View style={{ flex: 1, marginLeft: 12 }}>
-      <Text style={styles.itemTitle}>{title}</Text>
-      <Text style={styles.itemSubtitle}>{subtitle}</Text>
-    </View>
-    <Feather name="chevron-right" size={34} color="black" />
-  </TouchableOpacity>
-);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  header: {
-    backgroundColor: "#34967C",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-  },
-  profileInfo: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  avatar: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    marginRight: 12,
-  },
-  name: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
-    paddingLeft: 14,
-  },
-  username: {
-    color: "white",
-    fontSize: 14,
-    opacity: 0.9,
-    paddingLeft: 14,
-  },
-  section: {
-    backgroundColor: "white",
-    marginVertical: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 4,
-  },
-  sectionTitle: {
-    fontSize: 14,
-    color: "#666",
-    fontWeight: "bold",
-    marginLeft: 16,
-    marginTop: 10,
-    marginBottom: 4,
-  },
-  item: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#eee",
-  },
-  itemTitle: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: "#333",
-  },
-  itemSubtitle: {
-    fontSize: 13,
-    color: "#888",
-  },
-});
+export default Profile;
 
